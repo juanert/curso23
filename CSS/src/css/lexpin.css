@@ -1,9 +1,29 @@
+* {
+  margin: 0;
+  padding:0;
+}
+
 /*Barra de navegacion*/
 nav {
   background-color: #0055ff;
   color: white;
   font-size: 25px;
   display: flex;
+  /*Eje principal, solo se puede usar si el elemento es flex*/
+  justify-content: space-between;
+  /*Eje secundario, solo se puede usar si el elemento es flex*/
+  align-items: center;
+  /*height: 300px;*/
+  /*Distancia entre el borde de la caja y su contenido*/
+  /*
+  padding: 20px; 20 px en todas las direcciones
+  padding: 20px 0; 20 arriba y abajo, 0 derecha e izquierda
+  padding: 20px 0 20px 0; 20 arriba, 0 derecha, 20 abajo, 0 izquierda
+  */
+  padding: 20px;
+  /*Radio de los bordes, se lee arriba izquierda, arriba derecha
+  abajo izquierda, abajo derecha*/
+  border-radius: 0 0 15px 15px;
 }
 
 /*
@@ -12,4 +32,15 @@ nav {
 */
 nav div {
   display: flex;
+  /*Espaciado entre los elementos de la fila o columna*/
+  gap: 20px
 }
+/*
+  nav div a {
+    margin: 0 20px;
+  }
+*/
+
+
+
+
