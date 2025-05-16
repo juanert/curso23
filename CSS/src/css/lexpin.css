@@ -36,6 +36,31 @@ nav div {
   gap: 20px
 }
 /*
+  Las pseudoclases manejan el estado de un elemento
+  :hover se activa cuando el mouse pasa por encima del elemento
+  :active se activa cuando el elemento es presionado
+  :focus se activa cuando el elemento es seleccionado
+  :visited se activa cuando el elemento es visitado
+  :link se activa cuando el elemento es un link
+  :first-child se activa cuando el elemento es el primer hijo de su padre
+  :last-child se activa cuando el elemento es el último hijo de su padre
+*/
+nav div a:visited, nav div a:link {
+  color:white;
+  text-decoration: none;
+}
+
+.enlace:hover {
+  color: black;
+}
+
+/*
+#inicio:hover, #introduccion:hover {
+  color: rgb(0, 0, 0)
+}
+*/
+
+/*
   nav div a {
     margin: 0 20px;
   }
