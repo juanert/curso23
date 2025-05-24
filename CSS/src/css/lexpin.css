@@ -1,5 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap");
 
+/*
+  Medidas
+  px: pixeles (Absoluta)
+  %: porcentaje (relativa)
+  em: tamaño de la fuente del elemento padre
+  rem: tamaño de la fuente del elemento raíz
+  vh: porcentaje de la altura de la ventana
+  vw: porcentaje del ancho de la ventana
+  vmin: porcentaje del menor tamaño de la ventana
+  vmax: porcentaje del mayor tamaño de la ventana
+*/
+
 :root {
   --color-principal: #0055ff;
   --color-secundario: #2c5097;
@@ -36,7 +48,7 @@ nav {
   padding: 20px 0; 20 arriba y abajo, 0 derecha e izquierda
   padding: 20px 0 20px 0; 20 arriba, 0 derecha, 20 abajo, 0 izquierda
   */
-  padding: 20px;
+  padding: 10px 20px;
   /*Radio de los bordes, se lee arriba izquierda, arriba derecha
   abajo izquierda, abajo derecha*/
 }
@@ -100,11 +112,11 @@ main {
 
 header {
   height: 80vh;
-  min-height: 80vh;
+  min-height: 700px;
   background-size: cover;
   /*opacity: 0.1;*/
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   border-radius: 25px;
   /*grid-template-rows: 200px;*/
   /*eje principal*/
@@ -152,6 +164,10 @@ header::before {
   box-shadow: 10px 5px 12px 5px rgba(0, 0, 0, 1);
 }
 
+.menu-responsive{
+  display: none;
+}
+
 header > div {
   display: flex;
   flex-direction: column;
@@ -167,7 +183,7 @@ header > div > div {
 }
 
 h1 {
-  font-size: 50px;
+  font-size: var(--titulares);
   color: var(--color-quintario);
   text-align: center;
   text-shadow: 2px 2px 5px black;
@@ -227,3 +243,42 @@ p,h1,h2,h3,h4,h5,h6 {
     background-position: 0% 50%;
   }
 }
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+/* @media only screen and (min-width: 600px) {
+  p {
+    color: rgb(97, 190, 20)
+  }
+} */
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  header {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .menu-movil{
+    display: none;
+  }
+  .menu-responsive{
+    display: flex;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+/* @media only screen and (min-width: 992px) {
+  p {
+    color: green
+  }
+} */
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+/* @media only screen and (min-width: 1200px) {
+  p {
+    color: yellow
+  }
+} */
+
+/*
+Opción 1: Realizar una copia de la página principal de Youtube
+Opción 2: Realziar una copia de la página principal de farmatodo
+*/
