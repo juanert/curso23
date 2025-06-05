@@ -10,19 +10,31 @@
   gap: $gap
 
 @mixin estilizado($color, $tamano, $padding, $margen)
-  @if $color == null
-    $color: black
-  @else
+  if $color not null
     color: $color
-  @if $tamano == null
+  if $tamano not null
+    font-size: $tamano
+  if $padding not null
+    padding: $padding
+  if $margen not null
+    margin: $margen
+
+
+/*
+  Operadores lógicos
+  and (ambas condiciones deben ser verdaderas)
+  or (al menos una condición debe ser verdadera)
+  not (la condición debe ser falsa)
+  Ejemplo:
+  @if $color == blue and $tamano == 20px
+    color: $color
+    font-size: $tamano
+  @else if $color == red or $tamano == 16px
+    color: $color
+    font-size: $tamano
+  @else if not($color == green)
+    color: black
     font-size: 16px
   @else
-    font-size: $tamano
-  @if $padding == null
-    padding: 0
-  @else
-    padding: $padding
-  @if $margen == null
-    margin: 0
-  @else
-    margin: $margen
+    color: black
+    font-size: 16px

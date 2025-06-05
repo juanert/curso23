@@ -1,0 +1,39 @@
+nav
+  @include grid(true, 25% 50% 25%, 0, center)
+  @include espaciado(10px 20px, 0)
+  .izquierda
+    @include flex(row, start, center, 40px)
+    div
+      @include flex(row, center, center, 20px)
+    img
+      width: 179px
+    .moneda-container
+      @include flex(row, center, center, 10px)
+      img
+        width: 30px
+      .moneda
+        @include flex(column, center, start, 5px)
+        p
+          white-space: nowrap
+  .centro
+    @include flex(row, center, center)
+    .contenedor-busqueda
+      @include flex(row, center, center, 0)
+      border: 1px solid $color-primario
+      border-radius: 50px 50px 0 50px
+      button
+        background-color: white
+        border: none
+        @include espaciado(10px)
+      .categorias
+        background: #EDEDED
+        border-radius: 50px 0 0 50px
+      .buscar
+        background-color: $color-primario
+        border-radius: 0 50px 0 0
+        img
+          width: 20px
+          height: 20px
+  .derecha
+    @include flex(row, end, center, 20px)
+
