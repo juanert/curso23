@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body class="bg-white dark:bg-black flex flex-col">
+    <nav class="px-4 py-1 flex justify-between items-center sticky top-0">
+      <div class="flex items-center gap-4">
+        <div class="bg-white p-[16px] rounded-full"></div>
+        <div class="flex items-center gap-1">
+          <div class="bg-zinc-900 p-[20px] rounded-full hover:scale-[105%] hover:bg-zinc-600"></div>
+          <div class="bg-zinc-900 p-[8px] rounded-full flex items-center hover:bg-zinc-600 hidden lg:flex">
+            <input type="text" placeholder="¿Qué quieres reproducir?" class="text-gray-200 outline-none w-[200px]">
+          </div>
+        </div>
+      </div>
+      <div class="flex items-center gap-4">
+        <div class="flex items-center gap-2 hidden lg:flex">
+          <p class="text-neutral-400 font-semibold hover:text-white text-lg cursor-pointer">Premium</p>
+          <p class="text-neutral-400 font-semibold hover:text-white text-lg cursor-pointer">Asistencia</p>
+          <p class="text-neutral-400 font-semibold hover:text-white text-lg cursor-pointer">Descargar</p>
+        </div>
+        <p class="text-neutral-400 text-lg hidden lg:flex">|</p>
+        <p class="text-neutral-400 font-semibold hover:text-white text-lg cursor-pointer hidden lg:flex">Instalar app</p>
+        <p class="text-neutral-400 font-semibold hover:text-white text-lg cursor-pointer hidden lg:flex">Registrarte</p>
+        <button class="bg-white px-[20px] py-[10px] text-black font-semibold rounded-full hover:scale-[105%] hover:bg-neutral-200 hidden lg:flex">Iniciar sesión</button>
+        <div class="bg-white p-[20px] flex lg:hidden"></div>
+      </div>
+    </nav>
+  </body>
+</html>
