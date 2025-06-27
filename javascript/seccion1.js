@@ -29,24 +29,23 @@ let objeto = { nombre: "Juan", edad: 30 }; // Objeto
 console.log(objeto); // Imprime { nombre: "Juan", edad: 30 }
 console.log(objeto.nombre); // Imprime "Juan" (acceso a una propiedad del objeto)
 
-
 let suma_numeros = 5 + 3; // Suma
 let suma_string = "a10232!.;--''''-" + "2"; // Resta ()
 
 //Practica
 let prueba = "Pedro";
 prueba = 23;
-prueba = [1,2,3];
+prueba = [1, 2, 3];
 console.log(prueba);
 
-console.log(prueba[1]) //imprime 2
+console.log(prueba[1]); //imprime 2
 console.log(2 + 2);
 
 let estudiante = {
   nombre: "José",
   apellido: "Changir",
-  edad: 17
-}
+  edad: 17,
+};
 
 console.log(estudiante.edad);
 
@@ -129,16 +128,91 @@ var trece = !(
 
 //Inmortal
 var catorce = !!(
-  (
-    (10 % 3 != 1) ||
-    (typeof("10" - 5) !== "number") ||
-    !!([] && {})
-  ) &&
-  (
-    (12 * 4 === "48") ||
-    (7 <= "7" && "7" <= 7) ||
-    (Boolean(0) === Boolean("0"))
-  )
+  (10 % 3 != 1 || typeof ("10" - 5) !== "number" || !!([] && {})) &&
+  (12 * 4 === "48" || (7 <= "7" && "7" <= 7) || Boolean(0) === Boolean("0"))
 ); //verdadero
 
-console.log(catorce)
+console.log(catorce);
+
+//Operadores de asignación
+/*
+  Los operadores de asignación son utilizados para asignar valores a variables.
+  - Asignación simple: =
+  - Suma y asignación: +=
+  - Resta y asignación: -=
+  - Multiplicación y asignación: *=
+  - División y asignación: /=
+  - Módulo y asignación: %=
+*/
+let asignacion = 5; // Asignación simple
+/*
+  Para las siguientes operaciones, se toma el valor actual de la variable 'asignacion'
+  y se realiza la operación con el valor indicado, luego se asigna el resultado de nuevo a 'asignacion'.
+*/
+asignacion += 3; // Suma y asignación (asignacion = asignacion + 3)
+asignacion -= 2; // Resta y asignación (asignacion = asignacion - 2)
+asignacion *= 2; // Multiplicación y asignación (asignacion = asignacion * 2)
+asignacion /= 4; // División y asignación (asignacion = asignacion / 4)
+asignacion %= 3; // Módulo y asignación (asignacion = asignacion % 3)
+console.log(asignacion); // Imprime el valor final de 'asignacion'
+
+// switch
+/*
+  La estructura switch se utiliza para ejecutar diferentes bloques de código basados en el valor de una expresión.
+  Es útil cuando se tienen múltiples condiciones que dependen del mismo valor.
+*/
+
+let dia = 1; // Supongamos que 1 es Lunes, 2 es Martes, etc.
+switch (dia) {
+  case 1:
+    console.log("Lunes");
+    break;
+  case 2:
+    console.log("Martes");
+    break;
+  case 3:
+    console.log("Miércoles");
+    break;
+  case 4:
+    console.log("Jueves");
+    break;
+  case 5:
+    console.log("Viernes");
+    break;
+  case 6:
+    console.log("Sábado");
+    break;
+  case 7:
+    console.log("Domingo");
+    break;
+  default:
+    console.log("Día no válido");
+}
+
+// if else
+/*
+  La estructura if-else se utiliza para ejecutar un bloque de código si una condición es verdadera,
+  y otro bloque si la condición es falsa.
+*/
+
+let edad = 18; // Supongamos que la edad es 18
+if (edad < 0 || edad > 120) {
+  console.log("Edad no válida");
+} else if (edad < 18) {
+  console.log("Eres menor de edad");
+} else {
+  console.log("Eres mayor de edad");
+}
+
+let input = prompt("Ingrese un número entre 1 y 10:");
+
+/*
+  Ejercicios para practicar
+  1. Pidele tres datos al usuario. Numero 1, Numero 2 y operacion (suma, resta, multiplicación o división). Crea
+  un condicional que imprima el resultado de la operación entre los dos números.
+
+  2. Pidele un numero al usuario y crea un condicional que imprima si el número es par o impar.
+
+  3. Crea un código que le pida un numero entre 1 y 12 e imprima el nombre del mes correspondiente.
+  (1 = enero, 2 = febrero, etc.). Si el número no está entre 1 y 12, imprime "Número no válido".
+*/
