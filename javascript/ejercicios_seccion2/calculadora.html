@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function calculadora(num1, num2, operacion) {
+        if(isNaN(num1) || isNaN(num2)) {
+          alert("Por favor, ingrese números válidos.");
+          return;
+        }
+        if (operacion === "suma") {
+          alert("El resultado de la suma es: " + (num1 + num2));
+        } else if (operacion === "resta") {
+          alert("El resultado de la resta es: " + (num1 - num2));
+        } else if (
+          operacion === "multiplicación" ||
+          operacion === "multiplicacion"
+        ) {
+          alert("El resultado de la multiplicación es: " + num1 * num2);
+        } else if (operacion === "división" || operacion === "division") {
+          if (num2 !== 0) {
+            alert("El resultado de la división es: " + num1 / num2);
+          } else {
+            alert("Error: División por cero no permitida.");
+          }
+        } else {
+          alert(
+            "Operación no válida. Por favor, ingrese una operación correcta."
+          );
+        }
+      }
+      let num1 = Number(prompt("Ingrese el primer número:"));
+      let num2 = Number(prompt("Ingrese el segundo número:"));
+      let operacion = prompt(
+        "Ingrese la operación a realizar (suma, resta, multiplicación, división):"
+      ).toLowerCase();
+      calculadora(num1, num2, operacion);
+    </script>
+  </body>
+</html>
