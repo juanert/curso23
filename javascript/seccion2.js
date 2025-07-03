@@ -72,14 +72,14 @@ function saludarHoisting(nombre) {
 
 let saludos = "¡Hola!"; // Variable global
 
-if(true) {
+if (true) {
   var variableGlobal = "Soy global"; // Esta variable es global
   let variableLocal = "Soy local"; // Esta variable es local
   const constante = "Soy constante"; // Esta constante es local
   console.log(variableGlobal, variableLocal, constante);
 }
 
-if(true) {
+if (true) {
   let variableLocal = "Nuevo valor local"; // Esta variable es local y no afecta a la anterior
   const constante = "Nueva constante"; // Esta constante es local y no afecta a la anterior
 }
@@ -92,13 +92,13 @@ console.log(variableGlobal, variableLocal, constante);
 */
 
 function multiplicarConRetono(num1, num2) {
-  let multiplicacion = num1 * num2
-  console.log(multiplicacion)
+  let multiplicacion = num1 * num2;
+  console.log(multiplicacion);
   return multiplicacion; // Devuelve el resultado de la multiplicación
 }
 
 console.log(multiplicarConRetono(5, 3)); // Esto muestra 15 en la consola
-let resultado = multiplicarConRetono(10, 3) + 5
+let resultado = multiplicarConRetono(10, 3) + 5;
 
 // Es muy distinto a
 
@@ -107,7 +107,7 @@ function multiplicarSinRetorno(num1, num2) {
 }
 
 console.log(multiplicarSinRetorno(5, 3)); // Esto muestra undefined en la consola
-console.log(multiplicarSinRetorno(10,3) + 5)
+console.log(multiplicarSinRetorno(10, 3) + 5);
 
 //Recursion
 /*
@@ -140,4 +140,51 @@ imprimirNumerosRecursivo(0); // Llama a la función para iniciar la recursión
 
   Nivel experto:
   4. Crea una función recursiva que imprima la sucesión de Fibonacci hasta un número dado.
+*/
+
+//1
+function imprimir_numeros(numero, limite = 2) {
+  if (numero <= limite) {
+    if (numero % 2 === 0) console.log(numero);
+    imprimir_numeros(numero + 1, limite);
+  }
+}
+
+imprimir_numeros(0, 100);
+
+//2
+let frutas = ["uva", "melon", "tomate", "banana", "maiz"];
+
+function imprimir_array(lista = [], numero = 0) {
+  if (numero < lista.length) {
+    console.log(lista[numero]);
+    imprimir_array(lista, numero + 1);
+  }
+}
+
+imprimir_array(frutas);
+
+//3
+
+function calcular_factorial(numero, acumulador = 1) {
+  if (numero >= 1) {
+    acumulador = acumulador * numero;
+    if (numero === 1) {
+      console.log("El factorial es: " + acumulador);
+      return;
+    }
+    calcular_factorial(numero - 1, acumulador);
+  } else if (numero === 0) {
+    console.log("El factorial de 0 es 1");
+    return;
+  } else {
+    console.log("Ingresa un valor valido");
+  }
+}
+
+calcular_factorial(7);
+
+/*
+  Ejercicio extra de dificultad media
+  Crea una función recursiva que basado en un array de notas, te muestre el promedio.
 */
