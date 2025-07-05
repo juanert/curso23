@@ -262,3 +262,54 @@ do {
   Imprime todas las verduras.
   3. Según el objeto anterior, imprime todas las verduras, frutas y carnes.
 */
+
+const supermercado = {
+  verduras: ["lechuga", "pepino", "cebolla"],
+  frutas: ["manzana", "mazorca", "tomate"],
+  carnes: ["pollo", "res", "cerdo"],
+};
+
+// Resolución con For-in y For-of
+for (let categoria in supermercado) {
+  for (let elemento of supermercado[categoria]) {
+    console.log(elemento);
+  }
+}
+
+// Resolución con For-in y forEach (función de flecha)
+for (let categoria in supermercado) {
+  supermercado[categoria].forEach((elemento) => {
+    console.log(elemento);
+  });
+}
+
+/**
+ * Ejercicio 4:
+ * Segun el siguiente arreglo de arreglos (matriz), crea:
+ * - Un bucle que imprima la suma de todos los numeros.
+ * - Un bucle que imprima la suma de cada fila.
+ */
+const numeros = [
+  [1, 2, 3, 0],
+  [4, 5, 6, 8],
+  [7, 8, 9, 6],
+];
+
+// Suma de todos los números
+let suma = 0;
+for (let i = 0; i < numeros.length; i++) {
+  for (let j = 0; j < numeros[i].length; j++) {
+    suma += numeros[i][j];
+  }
+}
+console.log("La suma de todos los números es: " + suma); // Usamos i para identificar la fila
+
+// Suma de cada fila
+let sumaFila = 0;
+for (let i = 0; i < numeros.length; i++) {
+  for (let j = 0; j < numeros[i].length; j++) {
+    sumaFila += numeros[i][j];
+  }
+  console.log("La suma de la fila " + i + " es: " + sumaFila);
+  sumaFila = 0;
+}
