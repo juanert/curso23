@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    //El juego de tres en raya
+    let turno = "x";
+    let tablero = [
+      ["-", "-", "-"],
+      ["-", "-", "-"],
+      ["-", "-", "-"],
+    ];
+    contador = 0;
+
+    function juego() {
+      alert("Bienvenido al juego de 3 en raya");
+      while (evaluar_victoria() !== true) {
+        jugar();
+        contador++;
+      }
+    }
+
+    function jugar() {
+      do {
+        var fila = Number(prompt("Elige una fila del 1 al 3")) - 1;
+        var columna = Number(prompt("Elige una columna del 1 al 3")) - 1;
+        console.log(fila, columna);
+        if (
+          fila < 0 ||
+          fila > 2 ||
+          columna < 0 ||
+          columna > 2 ||
+          isNaN(fila) ||
+          isNaN(columna)
+        ) {
+          alert("Has colocado un valor no valido");
+        }
+        if (fila >= 0 && fila <= 2 && columna >= 0 && columna <= 2) {
+          if (tablero[fila][columna] !== "-") {
+            alert("Esa posición ya ha sido jugada, ingresa una nueva");
+          }
+        }
+      } while (
+        fila < 0 ||
+        fila > 2 ||
+        columna < 0 ||
+        columna > 2 ||
+        isNaN(fila) ||
+        isNaN(columna) ||
+        tablero[fila][columna] !== "-"
+      );
+      tablero[fila][columna] = turno;
+      alert(
+        tablero[0][0] +
+          " " +
+          tablero[0][1] +
+          " " +
+          tablero[0][2] +
+          "\n" +
+          tablero[1][0] +
+          " " +
+          tablero[1][1] +
+          " " +
+          tablero[1][2] +
+          "\n" +
+          tablero[2][0] +
+          " " +
+          tablero[2][1] +
+          " " +
+          tablero[2][2]
+      );
+      if (turno === "x") {
+        turno = "o";
+      } else if (turno === "o") {
+        turno = "x";
+      }
+    }
+
+    function evaluar_victoria() {
+      if (
+        (tablero[0][0] === tablero[0][1]) === tablero[0][2] ||
+        (tablero[1][0] === tablero[1][1]) === tablero[1][2] ||
+        (tablero[2][0] === tablero[2][1]) === tablero[2][2] ||
+        (tablero[0][0] === tablero[1][0]) === tablero[2][0] ||
+        (tablero[0][1] === tablero[1][1]) === tablero[2][1] ||
+        (tablero[0][2] === tablero[1][2]) === tablero[2][2] ||
+        (tablero[0][0] === tablero[1][1]) === tablero[2][2] ||
+        (tablero[0][2] === tablero[1][1]) === tablero[2][0]
+      ) {
+        alert("El jugador " + turno + " gano");
+        return true;
+      } else if (contador >= 9) {
+        alert("empate");
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    juego();
+  </script>
+</html>
