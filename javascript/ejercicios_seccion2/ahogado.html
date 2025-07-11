@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    //Realizar el juego del ahorcado
+    let palabras = [
+      "funcion",
+      "objeto",
+      "array",
+      "string",
+      "numero",
+      "booleano",
+      "undefined",
+      "null",
+      "let",
+      "const",
+      "var",
+      "if",
+      "else",
+      "switch",
+      "case",
+      "for",
+      "while",
+      "do",
+      "break",
+      "continue",
+      "return",
+      "try",
+      "catch",
+      "finally",
+      "throw",
+      "new",
+      "this",
+      "class",
+      "extends",
+      "super",
+      "import",
+      "export",
+      "default",
+      "async",
+      "await",
+      "prototype",
+      "closure",
+      "callback",
+      "promise",
+      "fetch",
+      "map",
+      "filter",
+      "reduce",
+      "some",
+      "every",
+      "find",
+      "findIndex",
+      "push",
+      "pop",
+      "shift",
+      "unshift",
+      "splice",
+      "slice",
+      "concat",
+      "join",
+      "split",
+      "indexOf",
+      "includes",
+      "startsWith",
+      "endsWith",
+      "toString",
+      "parseInt",
+      "parseFloat",
+      "isNaN",
+      "encodeURIComponent",
+      "decodeURIComponent",
+      "JSON",
+      "localStorage",
+      "sessionStorage",
+      "setTimeout",
+      "math",
+    ];
+    let vidas = 5;
+
+    function juego() {
+      alert("Bienvenido al juego del ahorcado");
+      //Genero una palabra aleatoria
+      let palabra = palabra_aleatoria();
+      //Palabra que solo contendra guiones "-"
+      let palabraSinDescubrir = "";
+      //Por cada letra que la palabra que genere tenga, palabraSinDescubrir tendra la misma
+      //cantidad de guiones
+      for (let letra of palabra) {
+        palabraSinDescubrir += "-";
+      }
+      //Inicio el juego
+      do {
+        //Le muestro al usuario la palabra con guiones
+        alert("La palabra es: " + palabraSinDescubrir);
+        //Le pido al usuario que ingrese una letra
+        let letra = prompt("ingresa una letra");
+        //Verifico si la letra que el usuario ingreso se encuentra en la palabra
+        if (palabra.includes(letra)) {
+          //Transformo palabraSinDescubrir en un array con cada una de las letras para
+          //poder remplazar los guiones por la letra que el usuario coloco
+          palabraSinDescubrir = palabraSinDescubrir.split("");
+          //Ejecuto un ciclo para recorrer cada una de las letras de palabra
+          for (let i = 0; i < palabra.length; i++) {
+            //Obtengo la posición donde la letra que el usuario coloco se encuentra en palabra
+            if (palabra[i] === letra) {
+              //con esa posición remplaza un guion de palabraSinDescubrir por la letra que
+              //el usuario ingreso
+              palabraSinDescubrir[i] = letra;
+            }
+          }
+          //Transformo el array en un string
+          //Haciendo que pase de ej: ["-","-","a","-"]
+          //a: --a--
+          palabraSinDescubrir = palabraSinDescubrir.join("");
+        } else {
+          //resto una vida en caso de que me haya equivocado
+          vidas--;
+          alert("Te has equivocado, te quedan " + vidas + " vidas");
+        }
+        //Mientras el usuario tenga vida y no haya ganado, se sigue ejecutando
+      } while (vidas > 0 && evaluar_resultado(palabraSinDescubrir));
+    }
+
+    function evaluar_resultado(palabraSinDescubrir) {
+      if (vidas <= 0) {
+        alert("Has perdido");
+        return false;
+      } else if (palabraSinDescubrir.includes("-")) {
+        return true;
+      } else {
+        alert("Has ganado");
+        return false;
+      }
+    }
+
+    function palabra_aleatoria() {
+      return palabras[Math.floor(Math.random() * 71)];
+    }
+
+    juego();
+  </script>
+</html>
