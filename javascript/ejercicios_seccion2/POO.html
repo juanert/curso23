@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+        El buscaminas
+      */
+      class BuscaMinas {
+        constructor(){
+          this.vivo = true;
+        }
+
+        llenar_tablero(tablero = [], longitud) {
+          //Voy a utilizar este for para crear tantas filas como la logintud ingresada por el usuario
+          for (let i = 0; i < longitud; i++) {
+            //Selecciono una posicion y creo un array que representara cada fila
+            tablero[i] = [];
+            //Este console log es solo para ver como se crea cada fila
+            console.log(tablero);
+            //Ejecuto un ciclo nuevamente para crear N elementos dentro de cada fila (habra la misma cantidad de elementos
+            //o tambien se pueden llamar columnas como filas )
+            for (let j = 0; j < longitud; j++) {
+              //crea un nuevo elemento en cada fila
+              tablero[i][j] = "";
+              //imprimo como se va creando cada elemento
+              console.log(tablero);
+            }
+          }
+          return tablero;
+        }
+
+        colocar_minas(tablero, logitud) {
+          for (let i = 0; i < longitud; i++) {
+            for (let j = 0; j < longitud; j++) {
+              //Genero un numero aleatorio entre 0 y 3
+              let probabilidad = Math.floor(Math.random * 4);
+              //Si probabilidad es 0 entonces habrá una mina en esa casilla
+              if (probabilidad < 1) {
+                tablero[i][j] = "X";
+              }
+            }
+          }
+          return tablero;
+        }
+
+        jugar() {
+          alert("Bienvenido al juego de buscaminas");
+          let longitud = prompt(
+            "Ingresa la longitud del tablero que te gustaria jugar"
+          );
+          let tablero = this.llenar_tablero([], longitud);
+          tablero = this.colocar_minas(tablero, longitud);
+          do{
+            
+          } while(this.vivo === true)
+        }
+      }
+    </script>
+  </body>
+</html>
