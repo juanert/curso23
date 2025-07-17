@@ -11,12 +11,15 @@
         El buscaminas
       */
       class BuscaMinas {
-        constructor(){
+        constructor() {
+          //Determina si el jugador sigue vivo
           this.vivo = true;
+          //Determina la cantidad de minas que hay en el tablero
+          this.contadorMinas = 0;
         }
 
         llenar_tablero(tablero = [], longitud) {
-          //Voy a utilizar este for para crear tantas filas como la logintud ingresada por el usuario
+          //Voy a utilizar este for para crear tantas filas como la longitud ingresada por el usuario
           for (let i = 0; i < longitud; i++) {
             //Selecciono una posicion y creo un array que representara cada fila
             tablero[i] = [];
@@ -34,32 +37,132 @@
           return tablero;
         }
 
-        colocar_minas(tablero, logitud) {
+        colocar_minas(tablero, longitud) {
           for (let i = 0; i < longitud; i++) {
             for (let j = 0; j < longitud; j++) {
               //Genero un numero aleatorio entre 0 y 3
-              let probabilidad = Math.floor(Math.random * 4);
+              let probabilidad = Math.floor(Math.random() * 4);
               //Si probabilidad es 0 entonces habrá una mina en esa casilla
+              console.log(probabilidad);
               if (probabilidad < 1) {
+                //Coloco una mina en la casilla
                 tablero[i][j] = "X";
+                //Aumento el contador de minas
+                this.contadorMinas++;
               }
             }
           }
+          //retorno el tablero con las minas colocadas
           return tablero;
+        }
+
+        mostrar_tablero(tablero) {
+          let tableroString = "";
+          //El primer ciclo recorre las filas del tablero
+          for (let i = 0; i < tablero.length; i++) {
+            //El segundo ciclo recorre las columnas de cada fila
+            for (let j = 0; j < tablero[i].length; j++) {
+              //Si la casilla tiene una mina, muestro "X", si está destapada muestro "O", y si está vacía muestro "."
+              if (tablero[i][j] === "X") {
+                tableroString += "X "; // Mostrar mina
+              } else if (tablero[i][j] === "O") {
+                tableroString += "O "; // Mostrar casilla destapada
+              } else {
+                tableroString += ". "; // Casilla vacía
+              }
+            }
+            //Añado un salto de línea al final de cada fila
+            tableroString += "\n";
+          }
+          alert(tableroString);
+        }
+
+        verificarVictoria(tablero, longitud) {
+          for (let i = 0; i < longitud; i++) {
+            for (let j = 0; j < longitud; j++) {
+              //Si aun hay una casilla vacía, el jugador no ha ganado
+              if (tablero[i][j] === "") {
+                return false;
+              }
+            }
+          }
+          return true; // Si no hay casillas vacías, el jugador ha ganado
         }
 
         jugar() {
           alert("Bienvenido al juego de buscaminas");
+          //Solicito al usuario la longitud del tablero
+          //El tablero será cuadrado, por lo que la longitud será tanto filas como columnas
           let longitud = prompt(
             "Ingresa la longitud del tablero que te gustaria jugar"
           );
-          let tablero = this.llenar_tablero([], longitud);
-          tablero = this.colocar_minas(tablero, longitud);
-          do{
-            
-          } while(this.vivo === true)
+          //Creo un tablero vacío con la longitud ingresada, este tablero será donde
+          //el jugador jugará
+          let tableroVacio = this.llenar_tablero([], longitud);
+          //Agarro el tablero vacío y coloco las minas en él
+          //El tablero con minas será que determinará si el jugador gana o pierde
+          let tableroConMinas = this.colocar_minas(tableroVacio, longitud);
+          do {
+            //Le pido al usuario que ingrese la fila y columna que desea destapar
+            alert(
+              "El tablero tiene " +
+                this.contadorMinas +
+                " minas, intenta no destaparlas"
+            );
+            let fila = prompt("Ingresa la fila que deseas destapar");
+            let columna = prompt("Ingresa la columna que deseas destapar");
+
+            if (tableroConMinas[fila][columna] === "X") {
+              tableroVacio[fila][columna] = "X";
+              this.mostrar_tablero(tableroVacio);
+              alert("¡Has encontrado una mina, haz perdido!");
+              this.vivo = false;
+            } else if (
+              tableroConMinas[fila][columna] === "" &&
+              fila >= 0 &&
+              fila < longitud &&
+              columna >= 0 &&
+              columna < longitud
+            ) {
+              tableroVacio[fila][columna] = "O";
+              alert("Continúa jugando");
+              this.mostrar_tablero(tableroVacio);
+            } else if (tableroConMinas[fila][columna] === "O") {
+              alert("Ya has destapado esta casilla, intenta con otra");
+            } else if (this.verificarVictoria(tableroConMinas, longitud)) {
+              alert("¡Felicidades, has ganado!");
+              this.vivo = false;
+            } else {
+              alert("Posición inválida, intenta nuevamente");
+            }
+          } while (this.vivo === true);
         }
       }
+
+      // Crear una instancia del juego y comenzar a jugar
+      const juego = new BuscaMinas();
+      juego.jugar();
+
+      /*
+        Crea una un sistema que modele diferentes tipos de empleados utilizando herencia y
+        POO. Crea una clase base llamada Empleado con propiedades como nombre, apellido, y salario.
+        Luego, crea clases derivadas como Gerente, Desarrollador y Diseñador que
+        hereden de Empleado y añadan propiedades o métodos específicos para cada tipo de empleado.
+
+        Cada clase derivada debe tener un metodo de presentación distinto que muestre
+        información específica del tipo de empleado. Por ejemplo, el Gerente podría mostrar
+        información sobre su equipo, el Desarrollador podría mostrar sus lenguajes de programación
+        y el diseñador podria mostrar tecnologias de diseño que utiliza. 
+
+        El diseñador debe de tener como propiedades: nombre, apellido, salario y tecnologias.
+        El desarrollador debe de tener como propiedades: nombre, apellido, salario y lenguajes.
+        El gerente debe de tener como propiedades: nombre, apellido, salario y equipo de trabajo.
+
+        Además, cada trabajador debe de tener un metodo que calcule el monto por horas extras trabajadas más su salario
+        teniendo en cuenta que para un diseñador la hora extra es de $100, para un desarrollador es de $150
+        y para un gerente es de $200. Y el salario de un diseñador es de $1000, el salario de un desarrollador es de $1500
+        y el salario de un gerente es de $2000.
+      */
     </script>
   </body>
 </html>
