@@ -854,3 +854,50 @@ do {
     }
   }
 } while (verificar_muerte([legolas, jhon_snow]));
+
+/*
+  Programación Funcional
+  La programación funcional es un paradigma de programación (una forma de pensar y organizar el código)
+  que se basa en el uso de funciones puras, inmutabilidad y la evitación de efectos secundarios.
+  En la programación funcional, las funciones son ciudadanos de primera clase, lo que significa que pueden
+  ser pasadas como argumentos, retornadas desde otras funciones y asignadas a variables.
+*/
+
+function juego_piedra_papel_tijera() {
+  //pedir jugadas a los jugadores
+  jugador1 = pedir_jugada(1);
+  jugador2 = pedir_jugada(2);
+  // Validar las jugadas de los jugadores
+  if (!validar_jugada(jugador1) || !validar_jugada(jugador2)) {
+    console.log("Jugada inválida. Debe ser piedra, papel o tijera.");
+    return;
+  }
+  // Evaluar el resultado del juego e imprimir el resultado
+  console.log(evaluar_resultado(jugador1, jugador2));
+}
+
+function pedir_jugada(jugador) {
+  let jugada = prompt(
+    `Jugador ${jugador}, ingresa tu jugada (piedra, papel o tijera):`
+  );
+  return jugada.toLowerCase();
+}
+
+function validar_jugada(jugada) {
+  const opciones = ["piedra", "papel", "tijera"];
+  return opciones.includes(jugada);
+}
+
+function evaluar_resultado(jugador1, jugador2) {
+  if (jugador1 === jugador2) {
+    return "Empate";
+  } else if (
+    (jugador1 === "piedra" && jugador2 === "tijera") ||
+    (jugador1 === "papel" && jugador2 === "piedra") ||
+    (jugador1 === "tijera" && jugador2 === "papel")
+  ) {
+    return "Jugador 1 gana";
+  } else {
+    return "Jugador 2 gana";
+  }
+}
