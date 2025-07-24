@@ -8,7 +8,18 @@ button {
   padding: 10px;
 }
 
+input {
+  margin: 5px;
+  padding: 10px;
+  width: auto;
+}
+
 .highlight {
   background-color: yellow;
   font-weight: bold;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
 }
