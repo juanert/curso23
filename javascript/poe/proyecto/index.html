@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body>
+    <section
+      class="flex flex-col items-center justify-center bg-gray-950 text-white min-h-screen gap-4 px-4 lg:px-16"
+    >
+      <p class="w-full text-left font-bold text-3xl">Calculadora</p>
+      <input class="bg-white text-black rounded-2xl py-4 w-full px-4" type="text" id="operation" readonly />
+      <div class="grid grid-cols-5 gap-2 w-full">
+        <button onclick="calculadora(7)" class="px-2 py-4 rounded-2xl bg-gray-600 text-white">7</button>
+        <button onclick="calculadora(8)" class="px-2 py-4 rounded-2xl bg-gray-600 text-white">8</button>
+        <button onclick="calculadora(9)" class="px-2 py-4 rounded-2xl bg-gray-600 text-white">9</button>
+        <button onclick="borrar()" class="px-2 py-4 rounded-2xl bg-gray-600 text-white">
+          DEL
+        </button>
+        <button onclick="reiniciar()" class="px-2 py-4 rounded-2xl bg-gray-600 text-white">AC</button>
+
+        <button onclick="calculadora(4)" class="px-2 py-4 rounded-2xl bg-gray-600 text-white">4</button>
+        <button onclick="calculadora(5)" class="px-2 py-4 rounded-2xl bg-gray-600 text-white">5</button>
+        <button onclick="calculadora(6)" class="px-2 py-4 rounded-2xl bg-gray-600 text-white">6</button>
+        <button onclick="calculadora('*')" class="px-2 py-4 rounded-2xl bg-gray-600 text-white">*</button>
+        <button onclick="calculadora('/')" class="px-2 py-4 rounded-2xl bg-gray-600 text-white">/</button>
+
+        <button onclick="calculadora(1)" class="px-2 py-4 rounded-2xl bg-gray-600 text-white">1</button>
+        <button onclick="calculadora(2)" class="px-2 py-4 rounded-2xl bg-gray-600 text-white">2</button>
+        <button onclick="calculadora(3)" class="px-2 py-4 rounded-2xl bg-gray-600 text-white">3</button>
+        <button onclick="calculadora('+')" class="px-2 py-4 rounded-2xl bg-gray-600 text-white">+</button>
+        <button onclick="calculadora('-')" class="px-2 py-4 rounded-2xl bg-gray-600 text-white">-</button>
+
+        <button onclick="calculadora(0)" class="px-2 py-4 rounded-2xl bg-gray-600 text-white">0</button>
+        <button onclick="calculadora('.')" class="px-2 py-4 rounded-2xl bg-gray-600 text-white">.</button>
+        <button onclick="calculadora('**')" class="px-2 py-4 rounded-2xl bg-gray-600 text-white">
+          EXP
+        </button>
+        <button onclick="calculadora('%')" class="px-2 py-4 rounded-2xl bg-gray-600 text-white">%</button>
+        <button onclick="calcular()" class="px-2 py-4 rounded-2xl bg-gray-600 text-white">=</button>
+      </div>
+      <script src="./calculadora.js"></script>
+    </section>
+  </body>
+</html>

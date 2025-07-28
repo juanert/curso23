@@ -112,7 +112,7 @@ toggleClassBtn.addEventListener("click", () => {
 
 /**
  * Alerts y Prompts
- * 
+ *
  * Los alert() y prompt() son funciones que se utilizan para mostrar alertas y prompts en la pantalla del navegador.
  * Se trata de pequeños avisos que se muestran en la parte superior de la pantalla.
  * No son lo más recomendable de utilizar según los conceptos de UI/UX, pero hacen el trabajo.
@@ -143,7 +143,7 @@ function createNewElementBasedOnInput() {
 
 /**
  * Manipulación del DOM (Document Object Model) en Formularios
- * 
+ *
  * Los formularios son elementos que permiten a los usuarios enviar datos a un servidor.
  */
 
@@ -161,7 +161,7 @@ fillFormBtn.addEventListener("click", () => {
 
 /**
  * Nota importante:
- * 
+ *
  * .textContent - permite obtener o establecer el texto de un elemento
  * .value - permite obtener o establecer el valor de un input
  */
