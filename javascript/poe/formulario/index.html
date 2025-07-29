@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body class="flex justify-center items-center min-h-screen p-4">
+    <form id="formulario" class="flex flex-col gap-4 shadow-2xl p-8">
+      <h1 class="font-bold text-4xl text-center w-full">
+        Formulario de registro
+      </h1>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div class="flex flex-col gap-2">
+          <label for="nombre">Nombre</label>
+          <input
+            type="text"
+            placeholder="nombre"
+            id="nombre"
+            class="border border-black/50 rounded-2xl pl-4"
+          />
+        </div>
+        <div class="flex flex-col gap-2">
+          <label for="apellido">Apellido</label>
+          <input
+            type="text"
+            placeholder="apellido"
+            id="apellido"
+            class="border border-black/50 rounded-2xl pl-4"
+          />
+        </div>
+      </div>
+      <div class="flex flex-col gap-2">
+        <label for="correo">Correo</label>
+        <input
+          type="text"
+          placeholder="correo"
+          id="correo"
+          class="border border-black/50 rounded-2xl pl-4"
+        />
+      </div>
+      <div class="flex flex-col gap-2">
+        <label for="pais">Pais</label>
+        <select
+          name="pais"
+          id="pais"
+          class="border border-black/50 rounded-2xl pl-4"
+        >
+          <option value="" disabled selected>Elige un pais</option>
+          <option value="Chile">Chile</option>
+          <option value="Venezuela">Venezuela</option>
+        </select>
+      </div>
+      <div class="flex flex-col gap-2">
+        <label for="password">Contraseña</label>
+        <input
+          type="password"
+          placeholder="password"
+          id="password"
+          class="border border-black/50 rounded-2xl pl-4"
+        />
+      </div>
+      <input type="submit" value="Enviar" class="bg-blue-400 hover:bg-blue-600 cursor-pointer rounded-2xl text-white"/>
+    </form>
+    <script src="./formulario.js"></script>
+  </body>
+</html>
