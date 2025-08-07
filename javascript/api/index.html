@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body>
+    <section class="grid grid-cols-4 gap-4 p-8">
+
+    </section>
+    <script>
+      async function showData(){
+        await fetch('https://rickandmortyapi.com/api/character')
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          //Selecciona la sección del DOM
+          let section = document.querySelector('section');
+          //Recorro cada uno de los personajes dentro de la propiedad results
+          data.results.forEach(character => {
+            //Creo un div para cada personaje
+            let card = document.createElement('div');
+            //Le asigno al div algunas clases de Tailwind CSS
+            card.className = 'border p-4 rounded';
+            //Agrego el contenido del personaje al div
+            card.innerHTML = `
+              <h2 class="font-bold">${character.name}</h2>
+              <img src="${character.image}" alt="${character.name}" class="w-full h-auto rounded">
+              <p>Status: ${character.status}</p>
+            `;
+            //Agrego el div al section
+            section.appendChild(card);
+          });
+        })
+      }
+
+      showData();
+    </script>
+  </body>
+</html>
