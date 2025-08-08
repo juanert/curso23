@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  </head>
+  <body>
+    <section
+      id="fondo"
+      class="min-h-screen flex flex-col justify-center items-center gap-6 py-6 px-4 bg-radial-[at_25%_25%] from-blue-400 text-white to-blue-700 to-75%"
+    >
+      <h1 class="animacion font-bold text-6xl">To Do List</h1>
+      <div class="animacion flex gap-2">
+        <input
+          type="text"
+          id="taskInput"
+          class="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 bg-white text-black w-64"
+          placeholder="Add a new task"
+        />
+        <button
+          class="font-medium text-lg text-white bg-purple-800 hover:bg-purple-900 hover:scale-110 px-2 py-1 cursor-pointer transition-transform"
+          id="button"
+        >
+          +
+        </button>
+      </div>
+
+      <div
+        id="tasks"
+        class="animacion bg-white rounded-md min-w-96 p-4 shadow-md"
+      ></div>
+    </section>
+    <script>
+      /*
+        Operador ternario
+        (condición) ? valorSiVerdadero : valorSiFalso
+        Ejemplo:
+        let edad = 18;
+        let esMayorDeEdad = (edad >= 18) ? "Sí" : "No";
+      */
+      let tareas = localStorage.getItem("tareas")
+        ? JSON.parse(localStorage.getItem("tareas"))
+        : [];
+
+      /**
+       * @description Agrega una nueva tarea a la lista
+       * @returns {void}
+       * @author Juan Rodriguez
+       */
+      function agregar_tareas() {
+        let tarea = document.getElementById("taskInput").value;
+        if (tarea) {
+          tareas.push({ texto: tarea, completada: false });
+          document.getElementById("taskInput").value = "";
+          localStorage.setItem("tareas", JSON.stringify(tareas));
+        }
+        mostrar_tareas();
+      }
+
+      /**
+       * @description dibuja las tareas en el HTML
+       * @returns {void}
+       * @author Juan Rodriguez
+       */
+      function mostrar_tareas() {
+        const tasksContainer = document.getElementById("tasks");
+        tasksContainer.innerHTML = "";
+        tareas.forEach((tarea, index) => {
+          const taskElement = document.createElement("div");
+          taskElement.classList.add(
+            "grid",
+            "grid-cols-[75%_25%]",
+            "gap-2",
+            "px-2",
+            "py-1",
+            "shadow-xl",
+            "rounded-md"
+          );
+          taskElement.innerHTML = `
+              <span class="line-clamp-1 text-black">${tarea.texto}</span>
+              <div class="flex justify-end items-center gap-2">
+                <button class="${
+                  tarea.completada ? "bg-green-500" : "bg-blue-500"
+                } text-white rounded-md px-2 py-1" onclick="completar_tarea(${index})">${
+            tarea.completada ? "☑️" : "✖️"
+          }</button>
+                <button class="bg-red-500 text-white rounded-md px-2 py-1" onclick="eliminar_tarea(${index})">🗑️</button>
+              </div>
+            `;
+          tasksContainer.appendChild(taskElement);
+        });
+      }
+
+      /**
+       * @description completa una tarea
+       * @param {number} index - El índice de la tarea a completar
+       * @returns {void}
+       * @author Juan Rodriguez
+       */
+      function completar_tarea(index) {
+        tareas[index].completada = !tareas[index].completada;
+        localStorage.setItem("tareas", JSON.stringify(tareas));
+        mostrar_tareas();
+      }
+
+      /**
+       * @description elimina una tarea de la lista
+       * @param {number} index - El índice de la tarea a eliminar
+       * @returns {void}
+       * @author Juan Rodriguez
+       */
+      function eliminar_tarea(index) {
+        tareas.splice(index, 1);
+        localStorage.setItem("tareas", JSON.stringify(tareas));
+        mostrar_tareas();
+      }
+
+      document.addEventListener("DOMContentLoaded", (event) => {
+        //GSAP ANIMATION
+        gsap.fromTo(
+          "#fondo",
+          { backgroundSize: "200% 200%", backgroundPosition: "0% 0%" },
+          {
+            backgroundSize: "100% 100%",
+            backgroundPosition: "100% 100%",
+            duration: 3,
+            yoyo: true,
+            repeat: -1,
+            ease: "power2.inOut",
+          }
+        );
+
+        gsap.from(".animacion", {
+          y: -50,
+          opacity: 0,
+          duration: 0.5,
+          stagger: 0.2,
+        });
+        //To do list code
+
+        //Evento para cuando el usuario presiona enter
+        document
+          .getElementById("taskInput")
+          .addEventListener("keypress", (e) => {
+            if (e.key === "Enter") {
+              agregar_tareas();
+            }
+          });
+
+        //Evento para cuando el usuario presiona el botón
+        document
+          .getElementById("button")
+          .addEventListener("click", agregar_tareas);
+
+        mostrar_tareas();
+      });
+    </script>
+  </body>
+</html>
