@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script type="module">
+      import bcrypt from "https://cdn.jsdelivr.net/npm/bcryptjs@2.4.3/+esm";
+
+      /*
+        Utilización de Bcrypt para cifrado y descifrado de una contraseña
+      */
+
+      //Mi contraseña
+      const password = "mi_contraseña_secreta";
+      //Generar un salt
+      /*
+      El salt es un valor aleatorio que se utiliza para aumentar la seguridad del hash.
+      La funcion genSaltSync() de Bcrypt se encarga de generar este salt.
+      Como parametro se le puede pasar el número de rondas de salting que se desea aplicar.
+    */
+      const salt = bcrypt.genSaltSync(12);
+      console.log(salt.length, salt);
+      /*
+        El hash no es más que una representación en texto plano de la contraseña original.S
+      */
+      const hash = bcrypt.hashSync(password, salt);
+      console.log(hash.length, hash);
+
+      let inputPassword = "mi_contraseña_secreta";
+      // Verificar la contraseña
+      const isMatch = bcrypt.compareSync(inputPassword, hash);
+      console.log(isMatch);
+
+
+    </script>
+  </body>
+</html>
