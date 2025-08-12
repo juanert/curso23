@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body
+    class="bg-gray-400 flex flex-col justify-center items-center min-h-screen"
+  >
+    <form
+      action="./results.html"
+      class="flex flex-col gap-4 p-4 bg-white rounded shadow-md"
+    >
+      <div class="flex flex-col gap-2">
+        <label for="updates"
+          >¿Deseas recibir actualizaciones del producto?</label
+        >
+        <input type="checkbox" name="updates" id="updates" />
+      </div>
+      <div class="flex flex-col gap-2">
+        <label for="promotions">¿Deseas recibir correos promocionales?</label>
+        <input type="checkbox" name="promotions" id="promotions" />
+      </div>
+      <input type="submit" value="Guardar" />
+    </form>
+    <script>
+      document.querySelector("form").onsubmit = (e) => {
+        save_data();
+      };
+
+      function save_data() {
+        let updates = document.getElementById("updates").checked;
+        let promotions = document.getElementById("promotions").checked;
+        let configuration = {
+          updates_policy: updates,
+          promotions_policy: promotions,
+        };
+        localStorage.setItem("configuration", JSON.stringify(configuration));
+      }
+    </script>
+  </body>
+</html>
+
