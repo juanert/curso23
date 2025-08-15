@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body
+    class="bg-gray-400 flex flex-col items-center justify-center min-h-screen"
+  >
+    <div id="tablero" class="grid grid-cols-4 lg:grid-cols-6 gap-8 p-4"></div>
+    <script>
+      let cartas = [
+        {
+          valor: "✊🏻",
+          volteada: false,
+          descubierta: false,
+        },
+        {
+          valor: "✌🏻",
+          volteada: false,
+          descubierta: false,
+        },
+        {
+          valor: "✋🏻",
+          volteada: false,
+          descubierta: false,
+        },
+        {
+          valor: "✊🏻",
+          volteada: false,
+          descubierta: false,
+        },
+        {
+          valor: "✌🏻",
+          volteada: false,
+          descubierta: false,
+        },
+        {
+          valor: "✋🏻",
+          volteada: false,
+          descubierta: false,
+        },
+        {
+          valor: "❣️",
+          volteada: false,
+          descubierta: false,
+        },
+        {
+          valor: "❣️",
+          volteada: false,
+          descubierta: false,
+        },
+        {
+          valor: "🪙",
+          volteada: false,
+          descubierta: false,
+        },
+        {
+          valor: "🪙",
+          volteada: false,
+          descubierta: false,
+        },
+        {
+          valor: "🌟",
+          volteada: false,
+          descubierta: false,
+        },
+        {
+          valor: "🌟",
+          volteada: false,
+          descubierta: false,
+        },
+        {
+          valor: "🌖",
+          volteada: false,
+          descubierta: false,
+        },
+        {
+          valor: "🌖",
+          volteada: false,
+          descubierta: false,
+        },
+      ];
+
+      /**
+       * Función que aleatoriza las cartas
+       */
+      function aleatorizar_cartas() {
+        cartas = cartas.sort(() => Math.random() - 0.5);
+      }
+
+      /**
+       * Función que voltea una carta
+       * @params {number} index - El índice de la carta a voltear
+       */
+      function voltear_carta(index) {
+        cartas[index].volteada = true;
+        mostrar_cartas();
+        cerrar_cartas();
+        evaluar_victoria();
+      }
+
+      /**
+       * Función que cierra las cartas
+       */
+      function cerrar_cartas() {
+        const cartasDescubiertas = cartas.filter((carta) => carta.volteada);
+        if (cartasDescubiertas.length === 2) {
+          const [carta1, carta2] = cartasDescubiertas;
+          if (carta1.valor === carta2.valor) {
+            let posicion1 = cartas.indexOf(carta1);
+            let posicion2 = cartas.indexOf(carta2);
+            cartas[posicion1].descubierta = true;
+            cartas[posicion1].volteada = false;
+            cartas[posicion2].descubierta = true;
+            cartas[posicion2].volteada = false;
+          } else {
+            setTimeout(() => {
+              cartas.forEach((carta) => {
+                carta.volteada = false;
+              });
+              mostrar_cartas();
+            }, 2000);
+          }
+        } else if (cartasDescubiertas.length > 2) {
+          cartas.forEach((carta) => {
+            carta.volteada = false;
+          });
+          mostrar_cartas();
+        }
+      }
+
+      /**
+       * Función que evalúa si se ha ganado el juego
+       */
+      function evaluar_victoria() {
+        if (cartas.every((carta) => carta.descubierta)) {
+          setTimeout(() => {
+            alert("¡Felicidades, has ganado!");
+          }, 500);
+        }
+      }
+
+      /**
+       * Función que muestra las cartas en el tablero
+       */
+      function mostrar_cartas() {
+        let tablero = document.getElementById("tablero");
+        tablero.innerHTML = ""; // Limpiar el tablero
+        cartas.forEach((carta, index) => {
+          let cartaDiv = document.createElement("div");
+          cartaDiv.className =
+            "carta bg-blue-600 py-16 px-8 text-white text-2xl font-bold rounded-lg shadow-xl cursor-pointer hover:scale-[1.10] trasition-all duration-300";
+          cartaDiv.id = `carta-${index}`;
+          cartaDiv.innerText =
+            carta.volteada || carta.descubierta ? carta.valor : "❓";
+          cartaDiv.addEventListener("click", () => voltear_carta(index));
+
+          tablero.appendChild(cartaDiv);
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        aleatorizar_cartas();
+        mostrar_cartas();
+      });
+    </script>
+  </body>
+</html>
