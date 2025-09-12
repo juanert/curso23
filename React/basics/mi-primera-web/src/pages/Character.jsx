@@ -17,7 +17,7 @@ function Character() {
   }
 
   return (
-    <div key={character.id} className="border p-4 rounded flex flex-col items-center gap-2">
+    <div className="border p-4 rounded flex flex-col items-center gap-2">
       <img src={character.image} alt={character.name} />
       <h2 className="font-bold">{character.name}</h2>
       <p>Status: {character.status}</p>
