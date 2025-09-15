@@ -4,16 +4,20 @@ import { useParams } from "react-router-dom";
 function Pokemon() {
   const [pokemon, setPokemon] = useState(null);
   const { id } = useParams();
-  
+
   useEffect(
     () => {
       fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
         .then((res) => res.json())
         .then((res) => setPokemon(res))
-        .catch((err) => console.log(err));
+        .catch((err) => alert("Pokémon no encontrado"));
     },
     []
   )
+  
+  if (!pokemon) {
+    return ("cargando...")
+  }
 
   return (
     <div>
