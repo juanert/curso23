@@ -16,7 +16,7 @@ function JuanGPT() {
   useEffect(() => {
     const fetchData = async () => {
       const completion = await openai.chat.completions.create({
-        messages: [{ role: "user", content: textArea.current.value }],
+        messages: [{ role: "user", content: "Responde como embajador de la marca lexpin, empresa de cursos de programación y diseño, solo imprime texto plano: " +  textArea.current.value }],
         model: "deepseek-chat",
       });
       setMessages([...messages, { role: "user", content: textArea.current.value }, { role: "assistant", content: completion.choices[0].message.content }]);
