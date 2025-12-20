@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Usuarios</h1>
+    <button onClick="cargarUsuarios()">Cargar Usuarios</button>
+    <ul id="lista"></ul>
+  </body>
+
+  <script src="./../api.js"></script>
+  <script>
+    async function cargarUsuarios() {
+      const users = await apiRequest("/users");
+
+      const ul = document.getElementById("lista");
+      ul.innerHTML = users
+        .map((user) => `<li>${user.name} - ${user.email}</li>`)
+        .join("");
+
+      console.log(users);
+    }
+  </script>
+</html>
