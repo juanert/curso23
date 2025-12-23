@@ -16,8 +16,30 @@ export default function Home() {
     axios
       .get("http://localhost:3001/api/users")
       .then((response) => setData(response.data))
+      .then((data) => console.log(data))
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
+
+  const handleDelete = async (id) => {
+    try {
+      fetch(`http://localhost:3001/api/users/${id}`, {
+        method: "DELETE",
+      })
+        .then((response) => {
+          if (response.ok) {
+            setData((prevData) => ({
+              ...prevData,
+              docs: prevData.docs.filter((user) => user._id !== id),
+            }));
+          } else {
+            console.error("Error deleting user");
+          }
+        })
+        .catch((error) => console.error("Error deleting user:", error));
+    } catch (error) {
+      console.error("Error deleting user:", error);
+    }
+  };
 
   return (
     <>
@@ -26,8 +48,8 @@ export default function Home() {
         {data && data?.docs ? (
           <ul>
             {data?.docs.map((user) => (
-              <li key={user._id}>
-                {user.name} - {user.email}
+              <li key={user._id} className="flex gap-4">
+                <p>{user.name} - {user.email}</p> <button onClick={() => handleDelete(user._id)}>Delete</button>
               </li>
             ))}
           </ul>
