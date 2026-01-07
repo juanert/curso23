@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import mongoosePaginate from "mongoose-paginate-v2";
-const bcrypt = require("bcrypt");
+import bcrypt from "bcrypt";
 
 // use pagination plugin
 mongoose.plugin(mongoosePaginate);
