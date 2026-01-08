@@ -1,0 +1,7 @@
+node_modules
+.dist
+frontend/.next
+frontend/.turbo
+backend/dist
+.env
+.env.local
